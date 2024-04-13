@@ -26,7 +26,7 @@ constructor(@InjectModel(Task.name) private taskModel: Model<Task>, @InjectModel
     if (!task) {
       throw new NotFoundException(`Task with id:${id} not found `)
     }
-    if (task.owner.toString() != user.sub || !(user.sub in task.users)) {
+    if (task.owner.toString() != user.sub && !(user.sub in task.users)) {
       throw new NotFoundException(`User is not authorized to see this task`)
     }
     return task
@@ -42,7 +42,7 @@ constructor(@InjectModel(Task.name) private taskModel: Model<Task>, @InjectModel
     if (!task) {
       throw new NotFoundException(`Task with id:${taskId} not found `)
     }
-    if (task.owner.toString() != user.sub) {
+    if (task.owner.toString() != user.sub && !(user.sub in task.users)) {
       throw new NotFoundException(`Only owner can add update task`)
     }
     await this.taskModel.updateOne({ _id: taskId }, body)
