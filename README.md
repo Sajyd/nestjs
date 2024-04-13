@@ -24,7 +24,6 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 This app provides with a basic REST API which has User auth and basic task management routes
 
 ## Installation
