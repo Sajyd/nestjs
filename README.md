@@ -24,7 +24,7 @@
 
 ## Description
 
-This app provides with a basic REST API which has User auth and basic task management routes
+This app provides with a basic task management REST API with user authentication
 
 ## Installation
 
