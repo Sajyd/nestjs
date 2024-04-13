@@ -18,41 +18,41 @@ export class TaskController {
 
     @UseGuards(AuthGuard)
     @Get()
-    listTask() {
-      return this.taskService.listtask();
+    listTask(@User() user: any) {
+      return this.taskService.listtask(user);
     }
 
     @UseGuards(AuthGuard)
     @Get('/:id')
-    findTask(@Param('id') id: string) {
-      return this.taskService.findTask(id);
+    findTask(@User() user: any, @Param('id') id: string) {
+      return this.taskService.findTask(user, id);
     }
     @Patch('/:id')
-    updateTask(@Param('id') id: string, @Body() data: Task) {
-      return this.taskService.updatetask(id, data);
+    updateTask(@User() user: any, @Param('id') id: string, @Body() data: Task) {
+      return this.taskService.updatetask(user, id, data);
     }
 
     @UseGuards(AuthGuard)
     @Delete(':id')
-    deleteTask(@Param('id') id: string) {
-      return this.taskService.deletetask(id);
+    deleteTask(@User() user: any, @Param('id') id: string) {
+      return this.taskService.deletetask(user, id);
     }
 
     @UseGuards(AuthGuard)
     @Patch('/:id/add-user/:userId')
-    addUser(@Param('id') taskId: string, @Param('userId') userId: string) {
-      return this.taskService.addUser(taskId, userId);
+    addUser(@User() user: any, @Param('id') taskId: string, @Param('userId') userId: string) {
+      return this.taskService.addUser(user, taskId, userId);
     }
 
     @UseGuards(AuthGuard)
     @Patch('/:id/remove-user/:userId')
-    removeUser(@Param('id') taskId: string, @Param('ownerId') userId: string) {
-      return this.taskService.removeUser(taskId, userId);
+    removeUser(@User() user: any, @Param('id') taskId: string, @Param('userId') userId: string) {
+      return this.taskService.removeUser(user, taskId, userId);
     }
 
     @UseGuards(AuthGuard)
     @Get('/:id/users')
-    getOwners(@Param('id') taskId: string) {
-      return this.taskService.getUsers(taskId);
+    getUsers(@User() user: any, @Param('id') taskId: string) {
+      return this.taskService.getUsers(user, taskId);
     }
 }
